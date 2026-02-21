@@ -4,7 +4,7 @@
  2. Run ```fetch https://github.com/Nivigor/RustDesk-Server-FreeBSD/releases/latest/download/rustdeskserver.tgz```
  3. Run ```tar xzf rustdeskserver.tgz```
  4. Run ```./install.sh```
------
+
  For XigmaNAS embedded: Add install.sh to WebGUI: Advanced: Command Scripts as a PostInit command.
------
+***
  [About RustDesk](https://rustdesk.com/)
