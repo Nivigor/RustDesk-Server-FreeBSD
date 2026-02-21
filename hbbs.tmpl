@@ -1,0 +1,28 @@
+#!/bin/sh
+#
+# hbbs - RustDesk ID (rendezvous / signaling) server
+#
+
+# PROVIDE: hbbs
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+
+. /etc/rc.subr
+
+hbbdir=%hbbdir%
+name=hbbs
+pidfile="/var/run/${name}.pid"
+hbbs_chdir="$hbbdir/bin"
+
+command="/usr/sbin/daemon"
+command_args="-H -P ${pidfile} ${hbbdir}/bin/${name}"
+extra_commands="reload"
+
+rcvar=${name}_enable
+
+load_rc_config $name
+
+: ${hbbs_enable:="NO"}
+: ${hbbs_flags="-o $hbbdir/log/$name.log"}
+
+run_rc_command "$1"

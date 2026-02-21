@@ -1,0 +1,28 @@
+#!/bin/sh
+#
+# hbbr - RustDesk relay server
+#
+
+# PROVIDE: hbbr
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+
+. /etc/rc.subr
+
+hbbdir=%hbbdir%
+name=hbbr
+pidfile="/var/run/${name}.pid"
+hbbr_chdir="$hbbdir/bin"
+
+command="/usr/sbin/daemon"
+command_args="-H -P ${pidfile} ${hbbdir}/bin/${name}"
+extra_commands="reload"
+
+rcvar=${name}_enable
+
+load_rc_config $name
+
+: ${hbbr_enable:="NO"}
+: ${hbbr_flags="-o $hbbdir/log/$name.log"}
+
+run_rc_command "$1"
